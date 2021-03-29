@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.js"
+    "build": "node ./scripts/create-env.js && webpack --config webpack.config.js"
   },
   "keywords": [
     "react",
