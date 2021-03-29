@@ -5,7 +5,7 @@ import { Search } from '@components';
 const HeaderComponent = () => {
     return (
         <Header>
-            <img src="./assets/logo.png" />
+            <img src="./assets/img/placeholders/logo.png" />
 
             <Anchor href="">Todas</Anchor>
             <Anchor href="">Menos valoradas</Anchor>
