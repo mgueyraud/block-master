@@ -19,7 +19,7 @@ module.exports = {
             "@layout": path.resolve(__dirname, "src/layout/"),
             "@containers": path.resolve(__dirname, "src/containers/"),
             "@tokens": path.resolve(__dirname, "src/tokens/"),
-            "@styles": path.resolve(__dirname, "src/tokens/"),
+            "@styles": path.resolve(__dirname, "src/styles/"),
         }
     },
     module: {

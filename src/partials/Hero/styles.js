@@ -1,9 +1,16 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import tokens from "@tokens";
+import { Banner as BannerComponent } from "@components";
 
 const { colors } = tokens;
 
 export const HeroWrapper = styled.div`
+`;
+
+export const Banner = styled(BannerComponent)`
+    ${props => props.width && css`
+        width: ${props.width}px;
+    `}
 `;
 
 export const Carousel = styled.div`
@@ -26,6 +33,7 @@ export const Paginate = styled.ul`
         height:12px;
         border-radius:50%;
         background-color: ${colors.base.cadetBlue};
+        cursor: pointer;
     }
 
     & li.active{

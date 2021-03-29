@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Hero } from '@partials';
 import { Wrapper } from '@layout';
-import { GlobalStyles } from './styles';
+import { GlobalStyles } from '@styles';
 import { MovieGrid } from "@containers";
 import { MovieItem, Loader } from './components';
 
@@ -32,7 +32,7 @@ const App = () => {
         <Wrapper>
             <GlobalStyles />
             <Header />
-            <Hero />
+            <Hero popularMovies={[movies[0], movies[1], movies[2]]} />
             <MovieGrid>
                 {movies.map(movie => (
                     <MovieItem

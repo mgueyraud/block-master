@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 import tokens from "@tokens";
+import { mediaQuery } from "@styles";
 
-const { colors, sizes, fontFamilys } = tokens;
+const { colors, sizes: { breakpoints }, fontFamilys } = tokens;
 
 export const Input = styled.input`
     background-color: ${colors.white};
@@ -22,4 +23,9 @@ export const InputWrapper = styled.div`
     display:flex;
     max-width:600px;
     width:100%;
+
+    ${mediaQuery(breakpoints.laptop, css`
+        max-width: 100%;
+        margin-top: 20px;
+    `)}
 `;

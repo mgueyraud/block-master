@@ -5,25 +5,31 @@ const { colors } = tokens;
 
 const animationSkeleton = keyframes`
   0% {
-    background-position: -100px
+    background-color: ${colors.base.black};
   }
   
-  40%, 100% {
-    background-position: 300px
+  70% {
+    background-color: ${colors.primary};
+  }
+
+  100% {
+    background-color: ${colors.base.black};
   }
 `;
 
 export const MovieArticle = styled.article`
     height:330px;
     position: relative;
-    
-    background-image: linear-gradient(90deg, ${colors.secondary} 0px, ${colors.primary} 80px, ${colors.secondary} 160px); 
-    background-size: 600px;
-    animation: ${animationSkeleton} 2s infinite ease-out;
+    background-color:${colors.secondary};
+    animation: ${animationSkeleton} 1.5s infinite ease-out;
+    border-radius:8px;
+    cursor:pointer;
 
     & img{
         border-radius:8px;  
         height:100%;
         max-width:100%;
+        width:100%;
+        object-fit: cover;
     }
 `;

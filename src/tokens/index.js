@@ -46,6 +46,12 @@ const tokens = {
                 width: "24px",
                 height: "24px"
             }
+        },
+        breakpoints: {
+            mobile: "600px",
+            tablet: "768px",
+            laptop: "992px",
+            desktop: "1200px"
         }
     },
     fontFamilys: {
