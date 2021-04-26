@@ -1,11 +1,15 @@
 import React from 'react';
 import { Grid, Title, MovieWrapper } from './styles';
 import PropTypes from "prop-types";
+import { useSelector } from 'react-redux';
 
 const MovieGrid = ({ children }) => {
+
+    const moviesReducers = useSelector(state => state.moviesReducer);
+
     return (
         <MovieWrapper>
-            <Title>Todas las publicaciones</Title>
+            <Title>{moviesReducers.search ? `Resultados para: "${moviesReducers.search}"` : "Todas las publicaciones"}</Title>
             <Grid>
                 {children}
             </Grid>

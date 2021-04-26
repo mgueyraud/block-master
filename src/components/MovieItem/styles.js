@@ -1,7 +1,7 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import tokens from "@tokens";
 
-const { colors } = tokens;
+const { colors, sizes } = tokens;
 
 const animationSkeleton = keyframes`
   0% {
@@ -21,9 +21,22 @@ export const MovieArticle = styled.article`
     height:330px;
     position: relative;
     background-color:${colors.secondary};
-    animation: ${animationSkeleton} 1.5s infinite ease-out;
+    ${props => props.hasImage && css`
+      animation: ${animationSkeleton} 1.5s infinite ease-out;
+    `}
+    background-color: ${colors.base.cadetBlue};
     border-radius:8px;
     cursor:pointer;
+    position:relative;
+
+    & p{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      font-size: ${sizes.font.titles.sm};
+      text-align:center;
+    }
 
     & img{
         border-radius:8px;  

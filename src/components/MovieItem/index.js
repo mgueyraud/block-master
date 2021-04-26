@@ -3,11 +3,14 @@ import { MovieArticle } from './styles';
 import { Stars } from '@components';
 import PropTypes from "prop-types";
 
-const MovieItem = ({ imgUrl, points }) => {
+const MovieItem = ({ poster_path, vote_average, original_title, handleClick }) => {
 
     const movieRef = useRef(null);
 
     useEffect(() => {
+
+        if (!poster_path) return;
+
         const observer = new IntersectionObserver((entries, observer) => {
             const element = entries[0];
             if (element.isIntersecting) {
@@ -21,21 +24,19 @@ const MovieItem = ({ imgUrl, points }) => {
         observer.observe(movieRef.current);
     }, [])
 
-    const handleClick = () => {
-        console.log("Hola");
-    };
-
     return (
-        <MovieArticle ref={movieRef} onClick={handleClick}>
-            <Stars points={points} />
-            <img className="lazy" data-src={imgUrl} />
+        <MovieArticle ref={movieRef} onClick={handleClick} hasImage={poster_path}>
+            <Stars points={String(vote_average)} />
+            {poster_path && <img className="lazy" data-src={`https://image.tmdb.org/t/p/w200/${poster_path}`} />}
+            {!poster_path && <p>{original_title}</p>}
         </MovieArticle>
     );
 }
 
 MovieItem.propTypes = {
-    imgUrl: PropTypes.string.isRequired,
-    points: PropTypes.string.isRequired
+    poster_path: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    original_title: PropTypes.string.isRequired
 };
 
 export default MovieItem;
