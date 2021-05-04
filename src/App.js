@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import { Header, Hero } from '@partials';
 import { Wrapper } from '@layout';
 import { GlobalStyles } from '@styles';
 import { MovieGrid } from "@containers";
-import { MovieItem, Loader } from './components';
+import { MovieItem, Loader } from '@components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovies } from './actions/moviesActions';
+import { setMovies } from '@actions/moviesActions';
+import { openModal } from '@actions/modalActions';
+import { Suspense } from 'react';
+
+const Modal = lazy(() => import(/*webpackChunkName: "modal"*/ "./components/Modal"));
 
 const App = () => {
 
@@ -15,7 +19,7 @@ const App = () => {
 
     const dispatch = useDispatch();
     const moviesReducer = useSelector(state => state.moviesReducer);
-
+    const modalReducer = useSelector(state => state.modalReducer);
 
     const fetchSearch = (query) => {
         setLoading(true);
@@ -31,7 +35,7 @@ const App = () => {
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`)
             .then(res => res.json())
             .then(data => {
-                dispatch(setMovies([...moviesReducer.movies, ...data.results]))
+                dispatch(setMovies([...moviesReducer.movies, ...data.results]));
                 setLoading(false);
             });
     }
@@ -67,6 +71,10 @@ const App = () => {
         }
     }
 
+    const handleSelectedMovie = id => {
+        dispatch(openModal(id));
+    };
+
     return (
         <Wrapper>
             <GlobalStyles />
@@ -77,10 +85,14 @@ const App = () => {
                     <MovieItem
                         key={movie.id}
                         {...movie}
+                        handleClick={handleSelectedMovie}
                     />
                 ))}
             </MovieGrid>
             {loading && <Loader />}
+            {modalReducer.isOpen && <Suspense fallback={null}>
+                <Modal />
+            </Suspense>}
         </Wrapper>
     );
 }

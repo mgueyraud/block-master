@@ -3,7 +3,7 @@ import { MovieArticle } from './styles';
 import { Stars } from '@components';
 import PropTypes from "prop-types";
 
-const MovieItem = ({ poster_path, vote_average, original_title, handleClick }) => {
+const MovieItem = ({ id, poster_path, vote_average, original_title, handleClick, className = "" }) => {
 
     const movieRef = useRef(null);
 
@@ -25,7 +25,7 @@ const MovieItem = ({ poster_path, vote_average, original_title, handleClick }) =
     }, [])
 
     return (
-        <MovieArticle ref={movieRef} onClick={handleClick} hasImage={poster_path}>
+        <MovieArticle ref={movieRef} onClick={() => handleClick(id)} hasImage={poster_path} className={className}>
             <Stars points={String(vote_average)} />
             {poster_path && <img className="lazy" data-src={`https://image.tmdb.org/t/p/w200/${poster_path}`} />}
             {!poster_path && <p>{original_title}</p>}

@@ -8,7 +8,7 @@ module.exports = {
     mode: "production",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     resolve: {
         extensions: [".js", ".jsx"],
@@ -19,6 +19,9 @@ module.exports = {
             "@containers": path.resolve(__dirname, "src/containers/"),
             "@tokens": path.resolve(__dirname, "src/tokens/"),
             "@styles": path.resolve(__dirname, "src/styles/"),
+            "@reducers": path.resolve(__dirname, "src/reducers/"),
+            "@types": path.resolve(__dirname, "src/types/"),
+            "@actions": path.resolve(__dirname, "src/actions/"),
         }
     },
     module: {
@@ -53,5 +56,10 @@ module.exports = {
             ]
         }),
         new Dotenv()
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
 }

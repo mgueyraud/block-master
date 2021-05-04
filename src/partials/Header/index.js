@@ -2,7 +2,7 @@ import React from 'react';
 import { Header, Anchor } from './styles';
 import { Search } from '@components';
 import { useDispatch } from 'react-redux';
-import { searchMovie } from '../../actions/moviesActions';
+import { searchMovie } from '@actions/moviesActions';
 
 const HeaderComponent = () => {
 

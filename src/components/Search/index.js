@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Input, InputWrapper } from './styles';
 import { Button } from '@components';
 import { useDispatch } from 'react-redux';
-import { searchMovie } from '../../actions/moviesActions';
+import { searchMovie } from '@actions/moviesActions';
 
 const Search = () => {
 

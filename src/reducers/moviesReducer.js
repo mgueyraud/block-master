@@ -1,4 +1,4 @@
-import { SEARCH, SET_MOVIES } from '../types/moviesTypes';
+import { SEARCH, SET_MOVIES } from '@types/moviesTypes';
 
 const initialState = {
     search: "",
